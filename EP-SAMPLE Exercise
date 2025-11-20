@@ -1,0 +1,32 @@
+ For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+192.168.103.10 www.web310.com
+192.168.103.11 www.web311.com
+
+54.146.201.115 www.pornhub.com
+208.8.8.139 soc.rivan.cloud
+
+192.168.103.10 bet10.com
+192.168.103.11 bet11.com
+
+PAT: Port Address Translation
+config t
+no access-list 8
+access-list 8 permit any
+Int Gi 3
+ ip nat Inside
+Int gi 1
+ ip nat Outside
+IP Nat inside source static tcp 192.168.103.21 80 208.8.8.66 80
+IP Nat inside source static tcp 192.168.103.21 443 208.8.8.66 443
+IP Nat inside source static tcp 192.168.103.22 80 208.8.8.66 8080
+IP Nat inside source static tcp 192.168.103.22 443 208.8.8.66 8443
+IP nat inside source list 8 int gi 1 Overload
+end
+show ip nat translation
