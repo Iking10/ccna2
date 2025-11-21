@@ -1,0 +1,53 @@
+
+
+
+!@I4
+conf t
+  int e0/0
+   ip add 10.30.65.1 255.255.255.128
+   no shut
+   end
+
+
+!@R4
+conf t
+  int e0/0
+   ip add 10.30.65.126 255.255.255.128
+   no shut
+   end   
+   
+64 sites
+2001:0db8::/56
+
+Convert: 64 = 2 raised to 6 (4th Hextet, 4i)
+Add:  /56 + /6 = /62
+
+2001:0db8:0000:0000:0000:0000:0000:0000/62 = 1st ipv6 network
+2001:0db8:0000:0004:0000:0000:0000:0000/62 = 2nd ipv6 network
+2001:0db8:0000:0008:0000:0000:0000:0000/62 = 3rd ipv6 network
+2001:0db8:0000:000c:0000:0000:0000:0000/62 = 4th ipv6 network
+2001:0db8:0000:0010:0000:0000:0000:0000/62 = 5th ipv6 network
+
+
+!@I4
+conf t
+  ipv6 unicast-routing
+  int e0/0
+   ipv6 add 2001:db8:0:8::/62 eui-64
+   no shut
+   end
+
+to verify
+
+sh ipv6 int brief
+
+conf t
+  ipv6 unicast-routing
+  int e0/0
+   ipv6 add 2001:db8:0:8::/62 eui-64
+   no shut
+   end
+
+to verify
+
+sh ipv6 int brief

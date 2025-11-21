@@ -1,0 +1,117 @@
+***Switching
+
+5 Super Hero of Switching
+1.Cupid - Trunking
+2.Darna - STP
+3.Wonder woman - Rapid STP
+4.Superman - Multiple STP
+5.X-Men - Port Security 
+
+TASK7: HOW TO BECOME A WORLD-CLASS NETWORK ENGINEER
+SPECIALIZING IN SWITCH:
+***Master the 4 super Hereos of Switching
+1. Qpid: 802.1Q:trunking - Access and Trunk 
+"make switch love each other!"LQ
+2. Darna: 802.1d: STP - Designated port and root port 
+"slowly protect switches" , wait 30 seconds 
+lis=15, lrn=15s, fwd: or blk.
+3. WonderWoman: 802.1w: rapidSTP 
+"quickly,Brutally protect switches"
+4. SuperMan: 802.1s: MiSTP
+"Protect Many Switches at the same time!"
+
+How to Trunk
+config t
+Int Range fa0/10-12
+ shutdown
+ switchport trunk Encap Dot1Q - STED
+ switchport mode trunk - SMT
+ switchport trunk allowed vlan 1-100 - STAV
+ no shut
+ do sh int trunk
+
+HOW TO CHANGE ROOT ID PRIORITY AND SECONDARY NUMBER
+TAAS:/d1       32786 --> 24576
+Config t
+spanning-tree mode pvst
+spanning-tree vlan 1-100 root Primary
+do sh spanning-tree vlan 1
+
+BABA:/d2         32768->   28672
+Config t              
+spanning-tree mode pvst
+spanning-tree vlan 1-100 root Secondary
+do sh spanning-tree vlan 1
+
+4 PORT STATES
+BLOCK
+LISTEN
+LEARN 
+FORWARD
+
+DESIGNATED PORT (DP) - All ports of root bridge
+ROOT PORT (RP) - 
+ALTERNATE PORT (AP) - 
+
+Commands:
+sh spanning-tree vlan 1
+sh mac address-table
+sh port-security address - command for security camera
+sh int status err - command to find out error-disabled camera - psecure-violation
+sh vlan brief - to check vlan 
+
+
+MOST IMPORTANT COMMAND LINE***
+TASK6: HOW TO GET FIRED IMMEDIATELY!
+SIRAIN NG TODO SI @COREtaas at @COREbaba:
+config t
+NO spanning-tree vlan 1-999
+end
+
+AYUSIN ULET IS @COREtaas: AT @COREbaba
+config t
+ spanning-tree vlan 1-999
+end
+
+
+Unicast - 
+Broadcast - 
+Multicast - IPv4mcast_05 (01:00:5e:00:00:05) - IPv4mcast 
+
+
+Bridge Protocal Data Unit (BPDU) - this represent you and the boss is the "Root ID" 
+when command line sh spanning-tree vlan 1 is executed 
+
+You'll know a switch is better/good when the MAC address is lower
+
+
+HSRP: Hot Standby Routing Protocol: all Cisco SW: Combine 2 or more IP to form 1 virtual IP
+    2 or more switches combine to form One virtual IP 
+VRRP: Virtual Router Redundancy Protocol: any brand
+GLBP: Global Load Balancing Protocol: all Cisco Router
+
+taas:
+config t
+hostname PLDT-ITO
+Track 1 Int gi 0/1 line-protocol
+Int vlan 1
+standby 1 ip 10.72.1.6 (.6 is virtual ip)
+standby 1 preempt (if primary ISP goes down, secondary ISP will assume connectivity)
+standby 1 Priority 150
+standby 1 Track 1 decrement 60
+
+baba:
+config t
+hostname GLOBE-ITO
+Int vlan 1
+standby 1 ip 10.72.1.6
+standby 1 preempt
+standby 1 Priority 100
+end
+
+
+Port-Aggregation/Etherchannel - Combines 2 or more cables and results speed
+LACP:LINK AGGREGATION CONTROL PROTOCOL = ieee worldStandrad
+cisco = PortAggregationProtocol: PaGP
+Combinding Two/More Layer 2 links AS ONE! Unite/UNITY
+
